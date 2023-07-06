@@ -5,7 +5,12 @@ const app = express();
 const database = {
   users: [
     {
-
+      ide: '123',
+      name: 'John',
+      email: 'julio@gmail.com',
+      password: 'cookies',
+      entries: 0,
+      joined: new Date(),
     },
   ],
 };
