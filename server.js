@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 
 // To test on Postman: localhost:3003/signin
 app.post('/signin', (req, res) => {
-  res.send('Signin');
+  res.send('signin');
 });
 
 app.listen(3003, () => {
