@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Alejandroq12/smart-recognition-backend/issues"
   },
-  "homepage": "https://github.com/Alejandroq12/smart-recognition-backend#readme"
+  "homepage": "https://github.com/Alejandroq12/smart-recognition-backend#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
