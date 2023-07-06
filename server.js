@@ -2,6 +2,14 @@ const express = require('express');
 
 const app = express();
 
+const database = {
+  users: [
+    {
+
+    },
+  ],
+};
+
 app.get('/', (req, res) => {
   res.send('This is working');
 });
