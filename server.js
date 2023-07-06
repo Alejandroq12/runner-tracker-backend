@@ -5,10 +5,18 @@ const app = express();
 const database = {
   users: [
     {
-      ide: '123',
-      name: 'John',
+      id: '123',
+      name: 'Julio',
       email: 'julio@gmail.com',
       password: 'cookies',
+      entries: 0,
+      joined: new Date(),
+    },
+    {
+      id: '124',
+      name: 'Alejandro',
+      email: 'julio2@gmail.com',
+      password: 'antihacker',
       entries: 0,
       joined: new Date(),
     },
