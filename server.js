@@ -55,6 +55,11 @@ app.post('/register', (req, res) => {
   res.json(database.users[database.users.length - 1]);
 });
 
+// :id means that we can enter any id in the browser and it will return the user with that id.
+app.get('/profile/:id', (req, res) => {
+    
+})
+
 app.listen(3003, () => {
   console.log('Server is running on port 3003');
 });
