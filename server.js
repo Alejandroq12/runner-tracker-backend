@@ -57,8 +57,18 @@ app.post('/register', (req, res) => {
 
 // :id means that we can enter any id in the browser and it will return the user with that id.
 app.get('/profile/:id', (req, res) => {
-    
-})
+  const { id } = req.params;
+  let found = false;
+  database.users.forEach((user) => {
+    if (user.id === id) {
+      found = true;
+      return res.json(user);
+    }
+  });
+  if (!found) {
+    res.status(400).json('not found');
+  }
+});
 
 app.listen(3003, () => {
   console.log('Server is running on port 3003');
