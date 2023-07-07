@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 });
 
 // To test on Postman: localhost:3003/signin
+// In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
   if (
     req.body.email === database.users[0].email &&
