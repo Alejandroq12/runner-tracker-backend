@@ -53,7 +53,7 @@ bcrypt.compare("veggies", '$2a$10$zg2S7YVrHvq73ZzNZytT7e17LIpwyr7gcfOlMnL.lqYg20
     req.body.email === database.users[0].email &&
     req.body.password === database.users[0].password
   ) {
-    res.json('success');
+    res.json(database.users[0]);
   } else {
     res.status(400).json('error logging in');
   }
