@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Alejandroq12/smart-recognition-backend#readme",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "cors": "^2.8.5",
     "express": "^4.18.2"
   },
   "devDependencies": {
