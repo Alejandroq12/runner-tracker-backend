@@ -1,1 +1,6 @@
-CREATE TABLE users(name text, age smallint, email text, birthday date)
+CREATE TABLE users(
+    name text,
+    age smallint,
+    email text,
+    birthday date
+  );
