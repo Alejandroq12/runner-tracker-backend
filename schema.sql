@@ -16,3 +16,4 @@ SELECT * FROM users ORDER BY score DESC;
 SELECT * FROM users ORDER BY score ASC;
 SELECT AVG(score) FROM users;
 SELECT SUM(age) FROM users;
+SELECT COUNT(name) FROM users;
