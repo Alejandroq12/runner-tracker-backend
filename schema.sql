@@ -17,3 +17,9 @@ SELECT * FROM users ORDER BY score ASC;
 SELECT AVG(score) FROM users;
 SELECT SUM(age) FROM users;
 SELECT COUNT(name) FROM users;
+
+CREATE TABLE login (
+  ID serial NOT NULL PRIMARY KEY,
+  secret VARCHAR (100) NOT NULL,
+  name text UNIQUE NOT NULL
+)
