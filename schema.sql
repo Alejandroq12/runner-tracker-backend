@@ -14,3 +14,4 @@ UPDATE users SET score=100 WHERE name='Jennifer' OR name='Saumira';
 SELECT * FROM users WHERE name LIKE 'J%';
 SELECT * FROM users ORDER BY score DESC;
 SELECT * FROM users ORDER BY score ASC;
+SELECT AVG(score) FROM users;
