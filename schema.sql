@@ -26,3 +26,4 @@ CREATE TABLE login (
 
 INSERT INTO login (secret, name) VALUES ('123456', 'Julio');
 INSERT INTO login (secret, name) VALUES ('123456', 'Jennifer');
+INSERT INTO login (secret, name) VALUES ('123456', 'Saumira');
