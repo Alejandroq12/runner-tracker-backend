@@ -23,3 +23,5 @@ CREATE TABLE login (
   secret VARCHAR (100) NOT NULL,
   name text UNIQUE NOT NULL
 )
+
+INSERT INTO login (secret, name) VALUES ('123456', 'Julio');
