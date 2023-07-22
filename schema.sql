@@ -32,3 +32,7 @@ SELECT * FROM users JOIN login ON users.name = login.name;
 DELETE FROM users WHERE name='Julio';
 DROP TABLE users;
 DROP TABLE login;
+
+---------------------------------------
+
+CREATE DATABASE "smart-recognizer";
