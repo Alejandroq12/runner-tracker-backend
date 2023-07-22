@@ -1,7 +1,20 @@
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const knex = require('knex');
+const knex = require('knex')
+
+const postgres = knex({
+  client: 'pg',
+  connection: {
+    host: '127.0.0.1',
+    user: 'postgres',
+    port: '5432',
+    password: '4991',
+    database: 'smart-recognizer',
+  },
+});
+
+console.log(postgres.select('*').from('users'));
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
