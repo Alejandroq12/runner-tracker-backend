@@ -14,7 +14,9 @@ const postgres = knex({
   },
 });
 
-console.log(postgres.select('*').from('users'));
+postgres.select('*').from('users').then(data => {
+  console.log(data);
+});
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
