@@ -115,6 +115,7 @@ app.get('/profile/:id', (req, res) => {
 
 app.put('/image', (req, res) => {
   const { id } = req.body;
+  .where('published_date', '<', 2000)
 });
 
 app.listen(3003, () => {
