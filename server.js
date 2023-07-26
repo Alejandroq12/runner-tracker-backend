@@ -117,6 +117,7 @@ app.put('/image', (req, res) => {
   const { id } = req.body;
   db.where('id', '=', id)
   .increment('entries', 1)
+  .returning('entries')
 });
 
 app.listen(3003, () => {
