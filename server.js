@@ -118,6 +118,9 @@ app.put('/image', (req, res) => {
   db.where('id', '=', id)
   .increment('entries', 1)
   .returning('entries')
+  .then(entries => {
+    console.log(entries);
+  })
 });
 
 app.listen(3003, () => {
