@@ -83,22 +83,26 @@ app.post('/register', (req, res) => {
   const { email, name, password } = req.body;
   const hash = bcrypt.hashSync(password);
   db.transaction((trx) => {
-    trx.insert({
-      hash: hash,
-      email: email,
-    });
-  });
-  return db('users')
-    .returning('*')
-    .insert({
-      email: email,
-      name: name,
-      joined: new Date(),
-    })
-    .then((user) => {
-      res.json(user[0]);
-    })
-    .catch((err) => res.status(400).json('unable to register'));
+    trx
+      .insert({
+        hash: hash,
+        email: email,
+      })
+      .into('login')
+      .returning('email')
+      .then((loginEmail) => {
+        return trx('users')
+          .returning('*')
+          .insert({
+            email: loginEmail,
+            name: name,
+            joined: new Date(),
+          })
+          .then((user) => {
+            res.json(user[0]);
+          });
+      });
+  }).catch((err) => res.status(400).json('unable to register'));
 });
 
 // :id means that we can enter any id in the browser and it will return the user with that id.
