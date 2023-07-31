@@ -82,7 +82,12 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
   const { email, name, password } = req.body;
   const hash = bcrypt.hashSync(password);
-  db.transaction()
+  db.transaction((trx) => {
+    trx.insert({
+      hash: hash,
+      email: email,
+    });
+  });
   return db('users')
     .returning('*')
     .insert({
