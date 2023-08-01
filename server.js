@@ -54,29 +54,7 @@ app.get('/', (req, res) => {
 // To test on Postman: localhost:3003/signin
 // In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
-  // Load hash from your password DB.
-  bcrypt.compare(
-    'apples',
-    '$2a$10$zg2S7YVrHvq73ZzNZytT7e17LIpwyr7gcfOlMnL.lqYg20spkoRCS',
-    function (err, res) {
-      console.log('first guess', res);
-    }
-  );
-  bcrypt.compare(
-    'veggies',
-    '$2a$10$zg2S7YVrHvq73ZzNZytT7e17LIpwyr7gcfOlMnL.lqYg20spkoRCS',
-    function (err, res) {
-      console.log('second guess', res);
-    }
-  );
-  if (
-    req.body.email === database.users[0].email &&
-    req.body.password === database.users[0].password
-  ) {
-    res.json(database.users[0]);
-  } else {
-    res.status(400).json('error logging in');
-  }
+
 });
 
 app.post('/register', (req, res) => {
