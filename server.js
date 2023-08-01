@@ -102,9 +102,8 @@ app.post('/register', (req, res) => {
             res.json(user[0]);
           });
       })
-      .then()
-  })
-  .catch((err) => res.status(400).json('unable to register'));
+      .then(trx.commit);
+  }).catch((err) => res.status(400).json('unable to register'));
 });
 
 // :id means that we can enter any id in the browser and it will return the user with that id.
