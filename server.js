@@ -55,6 +55,9 @@ app.get('/', (req, res) => {
 // In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
   db.select('email', 'hash').from('login')
+  .then(data => {
+    console.log(data)
+  })
 });
 
 app.post('/register', (req, res) => {
