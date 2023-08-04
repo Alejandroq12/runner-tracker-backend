@@ -64,6 +64,7 @@ app.post('/signin', (req, res) => {
           .then(user => {
             res.json(user[0])
           })
+          .catch(err => res.status(400).json('Unable to get user'))
       }
     })
 });
