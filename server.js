@@ -67,6 +67,7 @@ app.post('/signin', (req, res) => {
           .catch(err => res.status(400).json('Unable to get user'))
       }
     })
+    .catch(err => res.status(400).json('Wrong credentials'))
 });
 
 app.post('/register', (req, res) => {
