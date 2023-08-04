@@ -62,9 +62,8 @@ app.post('/signin', (req, res) => {
         db.select('*').from('users')
           .where('email', '=', req.body.email)
           .then(user => {
-            
+            res.json(user[0])
           })
-        res.json('')
       }
     })
 });
