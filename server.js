@@ -54,20 +54,25 @@ app.get('/', (req, res) => {
 // To test on Postman: localhost:3003/signin
 // In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
-  db.select('email', 'hash').from('login')
+  db.select('email', 'hash')
+    .from('login')
     .where('email', '=', req.body.email)
-    .then(data => {
-      const isValid = bcrypt.compareSync(req.body.password, data[0].hash)
+    .then((data) => {
+      const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
       if (isValid) {
-        return db.select('*').from('users')
+        return db
+          .select('*')
+          .from('users')
           .where('email', '=', req.body.email)
-          .then(user => {
-            res.json(user[0])
+          .then((user) => {
+            res.json(user[0]);
           })
-          .catch(err => res.status(400).json('Unable to get user'))
+          .catch((err) => res.status(400).json('Unable to get user'));
+      } else {
+        res.status(400).json('Wrong credentials');
       }
     })
-    .catch(err => res.status(400).json('Wrong credentials'))
+    .catch((err) => res.status(400).json('Wrong credentials'));
 });
 
 app.post('/register', (req, res) => {
@@ -94,7 +99,7 @@ app.post('/register', (req, res) => {
           });
       })
       .then(trx.commit)
-      .catch(trx.rollback)
+      .catch(trx.rollback);
   }).catch((err) => res.status(400).json('unable to register'));
 });
 
