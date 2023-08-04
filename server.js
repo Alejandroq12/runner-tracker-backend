@@ -55,9 +55,12 @@ app.get('/', (req, res) => {
 // In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
   db.select('email', 'hash').from('login')
-    .where( 'email', '=', req.body.email)
+    .where('email', '=', req.body.email)
     .then(data => {
-      console.log(data)
+      const isValid = bcrypt.compareSync(req.body.password, data[0].hash)
+      if (isValid) {
+        db.select('*').from('users')
+      }
     })
 });
 
