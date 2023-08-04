@@ -61,6 +61,9 @@ app.post('/signin', (req, res) => {
       if (isValid) {
         db.select('*').from('users')
           .where('email', '=', req.body.email)
+          .then(user => {
+            
+          })
         res.json('')
       }
     })
