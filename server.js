@@ -19,36 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-const database = {
-  users: [
-    {
-      id: '123',
-      name: 'Julio',
-      email: 'julio@gmail.com',
-      password: 'cookies',
-      entries: 0,
-      joined: new Date(),
-    },
-    {
-      id: '124',
-      name: 'Alejandro',
-      email: 'julio2@gmail.com',
-      password: 'antihacker',
-      entries: 0,
-      joined: new Date(),
-    },
-  ],
-  login: [
-    {
-      id: '987',
-      hash: '',
-      email: 'julio@gmail.com',
-    },
-  ],
-};
 
 app.get('/', (req, res) => {
-  res.send(database.users);
+  res.send('success') ;
 });
 
 // To test on Postman: localhost:3003/signin
