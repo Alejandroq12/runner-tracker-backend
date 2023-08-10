@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
 });
 
 // To test on Postman: localhost:3003/signin
-// In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
   db.select('email', 'hash')
     .from('login')
