@@ -19,13 +19,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
-
 app.get('/', (req, res) => {
-  res.send('success') ;
+  res.send('success');
 });
 
 // To test on Postman: localhost:3003/signin
-// In the future I will use a database to store the users.
 app.post('/signin', (req, res) => {
   db.select('email', 'hash')
     .from('login')
