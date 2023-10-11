@@ -30,15 +30,26 @@ DROP TABLE login;
 
 ---------------------------------------
 
-CREATE DATABASE "smart-recognizer";
-
+CREATE DATABASE "runner";
 CREATE TABLE users (
-  id serial PRIMARY KEY,
-  name VARCHAR(100),
-  email text UNIQUE NOT NULL,
-  entries BIGINT DEFAULT 0,
-  joined TIMESTAMP NOT NULL
+    id serial PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(100),
+    age smallint,
+    joined TIMESTAMP NOT NULL
 );
+
+
+
+CREATE TABLE run_data (
+    id serial PRIMARY KEY,
+    user_id int REFERENCES users(id),
+    date DATE NOT NULL,
+    distance_km DECIMAL(5, 2),
+    time_minutes INT,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
 
 CREATE TABLE login (
   id serial PRIMARY KEY,
