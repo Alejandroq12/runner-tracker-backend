@@ -1,5 +1,5 @@
 {
-  "name": "smart-recognition-backend",
+  "name": "runner-tracker-backend",
   "version": "1.0.0",
   "description": "This is the backend for my web application called smart recognition.",
   "main": "index.js",
