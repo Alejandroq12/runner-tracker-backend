@@ -10,7 +10,7 @@ const db = knex({
     user: 'postgres',
     port: '5432',
     password: '4991',
-    database: 'smart-recognizer',
+    database: 'runner',
   },
 });
 
@@ -74,7 +74,6 @@ app.post('/register', (req, res) => {
   }).catch((err) => res.status(400).json('unable to register'));
 });
 
-// :id means that we can enter any id in the browser and it will return the user with that id.
 app.get('/profile/:id', (req, res) => {
   const { id } = req.params;
   db.select('*')
@@ -90,16 +89,22 @@ app.get('/profile/:id', (req, res) => {
     .catch((err) => res.status(400).json('error getting user'));
 });
 
-app.put('/image', (req, res) => {
-  const { id } = req.body;
-  db('users')
-    .where('id', '=', id)
-    .increment('entries', 1)
-    .returning('entries')
-    .then((entries) => {
-      res.json(entries[0].entries);
-    })
-    .catch((err) => res.status(400).json('Unable to get entries'));
+app.post('/add-run', (req, res) => {
+  const { user_id, date, distance_km, time_minutes } = req.body;
+  db('run_data')
+    .insert({ user_id, date, distance_km, time_minutes })
+    .returning('*')
+    .then((data) => res.json(data[0]))
+    .catch((err) => res.status(400).json('Unable to add run data'));
+});
+
+app.get('/run-data/:user_id', (req, res) => {
+  const { user_id } = req.params;
+  db.select('*')
+    .from('run_data')
+    .where({ user_id })
+    .then((data) => res.json(data))
+    .catch((err) => res.status(400).json('Error retrieving run data'));
 });
 
 app.listen(3003, () => {
