@@ -7,6 +7,8 @@ const register = require('./controllers/register')
 const signin = require('./controllers/signin')
 const profile = require('./controllers/profile')
 const addRun = require('./controllers/addRun')
+const runData = require('./controllers/runData')
+
 
 const db = knex({
   client: 'pg',
@@ -39,14 +41,7 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) }
 
 app.post('/add-run', (req, res) => { addRun.handleAddRun(req,res, db)} );
 
-app.get('/run-data/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  db.select('*')
-    .from('run_data')
-    .where({ user_id })
-    .then((data) => res.json(data))
-    .catch((err) => res.status(400).json('Error retrieving run data'));
-});
+app.get('/run-data/:user_id', (req, res) => {runData.handleRunData(req, res, db)});
 
 app.get('/validate', (req, res) => {
   const { authorization } = req.headers;
