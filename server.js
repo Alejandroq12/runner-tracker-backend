@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const register = require('./controllers/register')
 const signin = require('./controllers/signin')
 const profile = require('./controllers/profile')
+const addRun = require('./controllers/addRun')
 
 const db = knex({
   client: 'pg',
@@ -36,14 +37,7 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
 
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) });
 
-app.post('/add-run', (req, res) => {
-  const { user_id, date, distance_km, time_minutes } = req.body;
-  db('run_data')
-    .insert({ user_id, date, distance_km, time_minutes })
-    .returning('*')
-    .then((data) => res.json(data[0]))
-    .catch((err) => res.status(400).json('Unable to add run data'));
-});
+app.post('/add-run', (req, res) => { addRun.handleAddRun(req,res, db)} );
 
 app.get('/run-data/:user_id', (req, res) => {
   const { user_id } = req.params;
@@ -52,10 +46,6 @@ app.get('/run-data/:user_id', (req, res) => {
     .where({ user_id })
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json('Error retrieving run data'));
-});
-
-app.listen(3003, () => {
-  console.log('Server is running on port 3003');
 });
 
 app.get('/validate', (req, res) => {
@@ -70,4 +60,8 @@ app.get('/validate', (req, res) => {
     }
     return res.json(decoded);
   });
+});
+
+app.listen(3003, () => {
+  console.log('Server is running on port 3003');
 });
