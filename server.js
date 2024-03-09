@@ -13,7 +13,7 @@ const validateJwt = require('./controllers/validateJwt');
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
+    host: 'postgresql-cubic-06845',
     user: 'postgres',
     port: '5432',
     password: '4991',
