@@ -1,9 +1,13 @@
 const handleSignin = (req, res, db, bcrypt, jwt) => {
-  db.select('email', 'hash').from('login').where('email', '=', req.body.email)
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json('Incorrect form submision')
+  }
+  db.select('email', 'hash').from('login').where('email', '=', email)
     .then(data => {
-      const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+      const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-        return db.select('*').from('users').where('email', '=', req.body.email)
+        return db.select('*').from('users').where('email', '=', email)
           .then(user => {
             const token = jwt.sign(user[0], 'YOUR_SECRET_KEY');
             res.json({user: user[0], token});
