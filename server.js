@@ -4,6 +4,7 @@ const cors = require('cors');
 const knex = require('knex');
 const jwt = require('jsonwebtoken');
 const register = require('./controllers/register')
+const signin = require('./controllers/signin')
 
 const db = knex({
   client: 'pg',
@@ -26,23 +27,7 @@ app.get('/', (req, res) => {
 });
 
 // To test on Postman: localhost:3003/signin
-app.post('/signin', (req, res) => {
-  db.select('email', 'hash').from('login').where('email', '=', req.body.email)
-    .then(data => {
-      const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
-      if (isValid) {
-        return db.select('*').from('users').where('email', '=', req.body.email)
-          .then(user => {
-            const token = jwt.sign(user[0], 'YOUR_SECRET_KEY');
-            res.json({user: user[0], token});
-          })
-          .catch(err => res.status(400).json('Unable to get user'));
-      } else {
-        res.status(400).json('Wrong credentials');
-      }
-    })
-    .catch(err => res.status(400).json('Wrong credentials'));
-});
+app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt, jwt) });
 
 // I am using dependency injection
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt, jwt) });
