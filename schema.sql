@@ -30,7 +30,8 @@ DROP TABLE login;
 
 ---------------------------------------
 
-CREATE DATABASE "runner";
+CREATE DATABASE runner;
+
 CREATE TABLE users (
     id serial PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -38,8 +39,6 @@ CREATE TABLE users (
     age smallint,
     joined TIMESTAMP NOT NULL
 );
-
-
 
 CREATE TABLE run_data (
     id serial PRIMARY KEY,
@@ -49,7 +48,6 @@ CREATE TABLE run_data (
     time_minutes INT,
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
-
 
 CREATE TABLE login (
   id serial PRIMARY KEY,
